@@ -1,0 +1,10 @@
+import json
+
+def main():
+    f = open("books.json")
+    for dataline in f:
+        data = json.loads(dataline, encoding='latin-1')
+        key = data.keys()[0]
+
+if __name__ == '__main__':
+    main()

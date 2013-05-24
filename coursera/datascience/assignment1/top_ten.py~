@@ -1,0 +1,13 @@
+import sys
+import json
+
+def main ():
+    tweet_file = open(sys.argv[1])
+    
+    mostF
+    
+    for line in tweet_file:
+        try:
+            data = json.opens(line)
+            try:
+                for tweet in data["entities"]["hashtags"]

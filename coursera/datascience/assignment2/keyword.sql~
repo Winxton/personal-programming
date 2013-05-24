@@ -1,0 +1,15 @@
+/*
+create view query
+AS
+SELECT 'q' as docid, 'washington' as term, 1 as count 
+UNION
+SELECT 'q' as docid, 'taxes' as term, 1 as count
+UNION 
+SELECT 'q' as docid, 'treasury' as term, 1 as count ;
+*/
+
+select max(sim) from (
+select query.docid, frequency.docid, sum (frequency.count * query.count) as sim from query, frequency
+where query.term = frequency.term and query.docid='q'
+group by query.docid, frequency.docid
+);
