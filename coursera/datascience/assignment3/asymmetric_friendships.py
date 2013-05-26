@@ -2,7 +2,7 @@ import MapReduce
 import sys
 
 """
-MapReduce Problem 3: Count friends
+MapReduce Problem 4 - find asymmetric Friendships
 """
 
 mr = MapReduce.MapReduce()
@@ -11,18 +11,16 @@ mr = MapReduce.MapReduce()
 # Do not modify above this line
 
 def mapper(record):
-    person_A = record[0]
-    person_B = record[1]
-    #person B is a friend of person A
-    mr.emit_intermediate(person_A, 1)
+    personA = record[0]
+    personB = record[1]
+    
+    mr.emit_intermediate(personA, personB)
+    mr.emit_intermediate(personB, personA)
 
 def reducer(key, list_of_values):
-    #key: person
-    #value: 1 for each friend
-    total = 0
-    for v in list_of_values:
-      total += v
-    mr.emit((key, total))
+    for person in list_of_values:
+        if list_of_values.count(person) == 1:
+            mr.emit((key, person))
 
 # Do not modify below this line
 # =============================

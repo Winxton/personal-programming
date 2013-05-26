@@ -2,7 +2,7 @@ import MapReduce
 import sys
 
 """
-MapReduce Problem 3: Count friends
+MapReduce Problem 5 - Unique Trimmed DNA Sequences
 """
 
 mr = MapReduce.MapReduce()
@@ -11,18 +11,13 @@ mr = MapReduce.MapReduce()
 # Do not modify above this line
 
 def mapper(record):
-    person_A = record[0]
-    person_B = record[1]
-    #person B is a friend of person A
-    mr.emit_intermediate(person_A, 1)
+    sequence_id = record[0]
+    nucleotides = record[1]
+    
+    mr.emit_intermediate(nucleotides[:-10], sequence_id)
 
 def reducer(key, list_of_values):
-    #key: person
-    #value: 1 for each friend
-    total = 0
-    for v in list_of_values:
-      total += v
-    mr.emit((key, total))
+    mr.emit(key)
 
 # Do not modify below this line
 # =============================
