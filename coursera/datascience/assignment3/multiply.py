@@ -1,6 +1,5 @@
 import MapReduce
 import sys
-import json
 
 """
 MapReduce problem 6: Matrix Multiplication
@@ -40,9 +39,9 @@ def reducer(key, list_of_values):
     sum = 0
     for idx in key_vals:
         if len(key_vals[idx]) == 2:
-            sum = key_vals[idx][0] * key_vals[idx][1]
-    mr.emit((key[0],key[1],sum))
-
+            sum += key_vals[idx][0] * key_vals[idx][1]
+    print sum
+    
 # Do not modify below this line
 # =============================
 
