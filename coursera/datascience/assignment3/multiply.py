@@ -40,7 +40,7 @@ def reducer(key, list_of_values):
     for idx in key_vals:
         if len(key_vals[idx]) == 2:
             sum += key_vals[idx][0] * key_vals[idx][1]
-    print sum
+    mr.emit((key[0],key[1],sum))
     
 # Do not modify below this line
 # =============================
